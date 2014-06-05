@@ -10,15 +10,9 @@ import UIKit
 
 class BaseObject: NSObject {
    
-    let objectID: String!
-    
-    init() {
-        super.init()
-    }
-    
-    init(objectID: String) {
-        super.init()
-        
-        self.objectID = objectID
+    let id: String
+
+    init(id: String) {
+        self.id = id
     }
 }

@@ -19,12 +19,4 @@ class BaseObjectTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-
-    func testObjectIDIsSet() {
-        let expectedValue = "Hello"
-        let object: BaseObject = BaseObject(objectID: expectedValue)
-        
-        XCTAssertEqual(expectedValue, object.objectID, "ObjectID was not set")
-    }
-
 }
