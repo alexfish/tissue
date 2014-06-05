@@ -8,8 +8,8 @@
 
 import UIKit
 
-class BaseObject: NSObject {
-   
+class BaseModel: NSObject {
+
     let id: String
 
     init(id: String) {

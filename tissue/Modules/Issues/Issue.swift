@@ -13,7 +13,7 @@ enum State: Int {
     case open = 1
 }
 
-class Issue: BaseObject {
+class Issue: BaseModel {
 
     var state: State
     let title: String

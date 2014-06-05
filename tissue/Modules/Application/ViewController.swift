@@ -13,6 +13,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
+        let repo: Repo = Repo(id: "alexfish/yolo")
+        let client: Client = Client()
+
+        client.issues(repo)
     }
 
     override func didReceiveMemoryWarning() {
