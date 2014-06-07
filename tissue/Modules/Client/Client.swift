@@ -26,7 +26,13 @@ class Client: NSObject {
 
         urlRequest.HTTPMethod = ClientHTTPMethod.GET
 
+        let application: UIApplication = UIApplication.sharedApplication()
+        application.networkActivityIndicatorVisible = true
+
         NSURLConnection.sendAsynchronousRequest(urlRequest, queue: queue, completionHandler: {response, data, error in
+
+            application.networkActivityIndicatorVisible = false
+
             if error {
                 completionHandler(json: nil, error: error)
             } else {
@@ -39,7 +45,7 @@ class Client: NSObject {
 
 extension Client {
 
-    func getIssues(repo: Repo, completionHandler: (issues: Issue[]?, error: NSError?) -> Void) {
+    func getIssues(repo: Repo, completionHandler: (issues: Issue[]!, error: NSError!) -> Void) {
 
         let parserError = NSError(domain: ParserError.domain, code: ParserError.code, userInfo: ParserError.userInfo)
         let issuesPath = "repos/\(repo.id)/issues"
@@ -48,11 +54,14 @@ extension Client {
         getURL(url, {
             if !$1 {
                 let json : AnyObject! = $0
-                if let issues = IssueParser.parseIssues(json as NSArray) {
-                    completionHandler(issues: issues, error: nil)
-                } else {
-                    completionHandler(issues: nil, error: parserError)
-                }
+
+                dispatch_async(dispatch_get_main_queue(), {
+                    if let issues = IssueParser.parseIssues(json as NSArray) {
+                        completionHandler(issues: issues, error: nil)
+                    } else {
+                        completionHandler(issues: nil, error: parserError)
+                    }
+                })
             }
         })
     }
