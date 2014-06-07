@@ -8,19 +8,44 @@
 
 import UIKit
 
+struct ClientHTTPMethod {
+    static let GET  = "GET"
+    static let POST = "POST"
+}
+
+struct ClientBaseURL {
+    static let GitHubAPI = NSURL(string: "https://api.github.com/")
+}
+
 class Client: NSObject {
 
-    let queue: NSOperationQueue = NSOperationQueue()
+    let queue = NSOperationQueue()
 
-    func issues(repo: Repo) {
-        let url: NSURL = NSURL(string: "https://api.github.com/repos/\(repo.id)/issues")
+    func getURL(url: NSURL, completionHandler: (json: AnyObject!, error: NSError!) -> Void) {
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: url)
 
-        urlRequest.HTTPMethod = "GET"
+        urlRequest.HTTPMethod = ClientHTTPMethod.GET
 
         NSURLConnection.sendAsynchronousRequest(urlRequest, queue: queue, completionHandler: {response, data, error in
-            let json : AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil)
-            println("json: \(json)")
+            if let json : AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) {
+                completionHandler(json: json, error: nil)
+            } else {
+                completionHandler(json: nil, error: NSError())
+            }
         })
     }
+}
+
+extension Client {
+
+    func issues(repo: Repo, issues: (Issue[]) -> Void) {
+        let url = NSURL(string: "repos/\(repo.id)/issues", relativeToURL: ClientBaseURL.GitHubAPI)
+
+        getURL(url, {
+            let json = $0
+
+            issues([])
+        })
+    }
+
 }

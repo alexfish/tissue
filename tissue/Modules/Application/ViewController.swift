@@ -17,7 +17,9 @@ class ViewController: UIViewController {
         let repo: Repo = Repo(id: "alexfish/yolo")
         let client: Client = Client()
 
-        client.issues(repo)
+        client.issues(repo, {
+            println($0)
+        })
     }
 
     override func didReceiveMemoryWarning() {
