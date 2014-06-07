@@ -55,13 +55,15 @@ extension Client {
             if !$1 {
                 let json : AnyObject! = $0
 
-                dispatch_async(dispatch_get_main_queue(), {
                     if let issues = IssueParser.parseIssues(json as NSArray) {
-                        completionHandler(issues: issues, error: nil)
+                        dispatch_async(dispatch_get_main_queue(), {
+                            completionHandler(issues: issues, error: nil)
+                        })
                     } else {
-                        completionHandler(issues: nil, error: parserError)
+                        dispatch_async(dispatch_get_main_queue(), {
+                            completionHandler(issues: nil, error: parserError)
+                        })
                     }
-                })
             }
         })
     }

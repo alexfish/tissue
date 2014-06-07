@@ -11,6 +11,7 @@ import UIKit
 class IssueViewController: UITableViewController {
 
     var issues: Issue[] = []
+    let repo = Repo(id: "CocoaPods/Core")
 
     init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
@@ -30,7 +31,6 @@ class IssueViewController: UITableViewController {
     // #pragma mark - Loading
 
     func getIssues() {
-        let repo: Repo = Repo(id: "CocoaPods/Core")
         let client: Client = Client()
 
         client.getIssues(repo, { issues, error in
