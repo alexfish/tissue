@@ -13,8 +13,8 @@ struct ClientHTTPMethod {
     static let POST = "POST"
 }
 
-struct ClientBaseURL {
-    static let GitHubAPI = NSURL(string: "https://api.github.com/")
+struct ClientURL {
+    static let GitHub = NSURL(string: "https://api.github.com/")
 }
 
 class Client: NSObject {
@@ -27,10 +27,11 @@ class Client: NSObject {
         urlRequest.HTTPMethod = ClientHTTPMethod.GET
 
         NSURLConnection.sendAsynchronousRequest(urlRequest, queue: queue, completionHandler: {response, data, error in
-            if let json : AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) {
-                completionHandler(json: json, error: nil)
+            if error {
+                completionHandler(json: nil, error: error)
             } else {
-                completionHandler(json: nil, error: NSError())
+                let (response: AnyObject!, error: NSError!) = Parser.parseJSON(data)
+                completionHandler(json: response, error: error)
             }
         })
     }
@@ -38,13 +39,15 @@ class Client: NSObject {
 
 extension Client {
 
-    func issues(repo: Repo, issues: (Issue[]) -> Void) {
-        let url = NSURL(string: "repos/\(repo.id)/issues", relativeToURL: ClientBaseURL.GitHubAPI)
+    func getIssues(repo: Repo, issues: (Issue[]) -> Void) {
+        let issuesPath = "repos/\(repo.id)/issues"
+        let url = NSURL(string: issuesPath, relativeToURL: ClientURL.GitHub)
 
         getURL(url, {
-            let json = $0
-
-            issues([])
+            if !$1 {
+                let json : AnyObject! = $0
+                issues([])
+            }
         })
     }
 

@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         let repo: Repo = Repo(id: "alexfish/yolo")
         let client: Client = Client()
 
-        client.issues(repo, {
+        client.getIssues(repo, {
             println($0)
         })
     }

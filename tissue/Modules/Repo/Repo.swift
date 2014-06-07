@@ -8,6 +8,6 @@
 
 import UIKit
 
-class Repo: BaseModel {
+class Repo: Model {
     
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseModel: NSObject {
+class Model: NSObject {
 
     let id: String
 

@@ -13,7 +13,7 @@ enum State: Int {
     case open = 1
 }
 
-class Issue: BaseModel {
+class Issue: Model {
 
     var state: State
     let title: String
@@ -35,5 +35,13 @@ class Issue: BaseModel {
         self.url = url
 
         super.init(id: id)
+    }
+
+    convenience init(id: String, title: String, body: String, url: NSURL) {
+        self.init(id: id, state: State.open, title: title, body: body, url: url)
+    }
+
+    convenience init(id: String, title: String, url: NSURL) {
+        self.init(id: id, state: State.open, title: title, url: url)
     }
 }
