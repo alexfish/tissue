@@ -13,6 +13,8 @@ class IssueViewController: UITableViewController {
     var issues: Issue[] = []
     let repo = Repo(id: "CocoaPods/Core")
 
+    // #pragma mark - Init
+
     init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
     }
@@ -20,15 +22,20 @@ class IssueViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+        setupTitle()
+        setupTableView()
         getIssues()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    // #pragme mark - Setup
+
+    func setupTitle() {
+        self.title = repo.id
     }
 
-    // #pragma mark - Loading
+    func setupTableView() {
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+    }
 
     func getIssues() {
         let client: Client = Client()
