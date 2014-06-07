@@ -18,7 +18,11 @@ class ViewController: UIViewController {
         let client: Client = Client()
 
         client.getIssues(repo, {
-            println($0)
+            if $0 {
+                println($0)
+            } else {
+                println($1)
+            }
         })
     }
 
