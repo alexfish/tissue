@@ -17,21 +17,28 @@ struct ClientURL {
     static let GitHub = NSURL(string: "https://api.github.com/")
 }
 
+
 class Client: NSObject {
 
     let queue = NSOperationQueue()
+    var timeoutInterval: NSTimeInterval
+
+    init(timeout: NSTimeInterval) {
+        self.timeoutInterval = timeout
+        super.init()
+    }
+
+    convenience init() {
+        self.init(timeout: 30)
+    }
 
     func getURL(url: NSURL, completionHandler: (json: AnyObject!, error: NSError!) -> Void) {
-        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        self.toggleActicityIndicator()
 
-        urlRequest.HTTPMethod = ClientHTTPMethod.GET
-
-        let application: UIApplication = UIApplication.sharedApplication()
-        application.networkActivityIndicatorVisible = true
+        let urlRequest: NSURLRequest = self.urlGETRequest(url)
 
         NSURLConnection.sendAsynchronousRequest(urlRequest, queue: queue, completionHandler: {response, data, error in
-
-            application.networkActivityIndicatorVisible = false
+            self.toggleActicityIndicator()
 
             if error {
                 completionHandler(json: nil, error: error)
@@ -40,6 +47,20 @@ class Client: NSObject {
                 completionHandler(json: response, error: error)
             }
         })
+    }
+
+    func urlGETRequest(url: NSURL) -> NSURLRequest {
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: url)
+
+        urlRequest.HTTPMethod = ClientHTTPMethod.GET
+        urlRequest.timeoutInterval = timeoutInterval
+
+        return urlRequest
+    }
+
+    func toggleActicityIndicator() {
+        let application: UIApplication = UIApplication.sharedApplication()
+        application.networkActivityIndicatorVisible = !application.networkActivityIndicatorVisible
     }
 }
 
@@ -51,9 +72,9 @@ extension Client {
         let issuesPath = "repos/\(repo.id)/issues"
         let url = NSURL(string: issuesPath, relativeToURL: ClientURL.GitHub)
 
-        getURL(url, {
-            if !$1 {
-                let json : AnyObject! = $0
+        getURL(url, { response, error in
+            if !error {
+                let json : AnyObject! = response
 
                     if let issues = IssueParser.parseIssues(json as NSArray) {
                         dispatch_async(dispatch_get_main_queue(), {
@@ -64,6 +85,10 @@ extension Client {
                             completionHandler(issues: nil, error: parserError)
                         })
                     }
+            } else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    completionHandler(issues: nil, error: error)
+                });
             }
         })
     }
