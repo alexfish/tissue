@@ -58,7 +58,7 @@ class IssueViewController: UITableViewController {
 
         if indexPath!.row < self.issues.count  {
             let issue: Issue = self.issues[indexPath!.row]
-            cell.text = issue.title
+            cell.text = "#\(issue.id) - \(issue.title)"
         }
 
         return cell
