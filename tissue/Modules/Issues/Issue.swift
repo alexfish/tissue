@@ -44,4 +44,8 @@ class Issue: Model {
     convenience init(id: String, title: String, url: NSURL) {
         self.init(id: id, state: State.open, title: title, url: url)
     }
+
+    func description() -> String {
+        return "Issue is title: \(title), state: \(state), body: \(body), url: \(url)"
+    }
 }

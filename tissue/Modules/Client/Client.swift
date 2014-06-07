@@ -46,7 +46,7 @@ extension Client {
         getURL(url, {
             if !$1 {
                 let json : AnyObject! = $0
-                issues([])
+                issues(IssueParser.parseIssues(json as NSArray))
             }
         })
     }

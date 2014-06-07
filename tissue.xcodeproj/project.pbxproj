@@ -10,6 +10,10 @@
 		062A7A751943725900E5FCCE /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062A7A741943725900E5FCCE /* Parser.swift */; };
 		062A7A791943789200E5FCCE /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062A7A781943789200E5FCCE /* ParserTests.swift */; };
 		062A7A7A1943795400E5FCCE /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062A7A741943725900E5FCCE /* Parser.swift */; };
+		062A7A7E194390D500E5FCCE /* IssueParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062A7A7D194390D500E5FCCE /* IssueParserTests.swift */; };
+		062A7A811943918900E5FCCE /* IssueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062A7A801943918900E5FCCE /* IssueParser.swift */; };
+		062A7A8219439AAD00E5FCCE /* IssueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062A7A801943918900E5FCCE /* IssueParser.swift */; };
+		062A7A8319439BB200E5FCCE /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF949D1A193F6158004EB8A1 /* Issue.swift */; };
 		06ED58F21940F2510032FD30 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF949D18193F6071004EB8A1 /* Model.swift */; };
 		06ED58F519410F520032FD30 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED58F419410F520032FD30 /* Client.swift */; };
 		06ED58F8194112980032FD30 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED58F7194112980032FD30 /* Repo.swift */; };
@@ -36,6 +40,8 @@
 /* Begin PBXFileReference section */
 		062A7A741943725900E5FCCE /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = Base/Parser.swift; sourceTree = "<group>"; };
 		062A7A781943789200E5FCCE /* ParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParserTests.swift; path = Base/ParserTests.swift; sourceTree = "<group>"; };
+		062A7A7D194390D500E5FCCE /* IssueParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueParserTests.swift; sourceTree = "<group>"; };
+		062A7A801943918900E5FCCE /* IssueParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueParser.swift; sourceTree = "<group>"; };
 		06ED58F419410F520032FD30 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		06ED58F7194112980032FD30 /* Repo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		CF949CDF193F5BC4004EB8A1 /* tissue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tissue.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				CF949D1A193F6158004EB8A1 /* Issue.swift */,
+				062A7A801943918900E5FCCE /* IssueParser.swift */,
 			);
 			path = Issues;
 			sourceTree = "<group>";
@@ -182,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				CF949D11193F5F6D004EB8A1 /* IssueTests.swift */,
+				062A7A7D194390D500E5FCCE /* IssueParserTests.swift */,
 			);
 			path = Issues;
 			sourceTree = "<group>";
@@ -305,6 +313,7 @@
 			files = (
 				CF949D0F193F5F36004EB8A1 /* ViewController.swift in Sources */,
 				CF949D09193F5C12004EB8A1 /* AppDelegate.swift in Sources */,
+				062A7A811943918900E5FCCE /* IssueParser.swift in Sources */,
 				CF949D19193F6071004EB8A1 /* Model.swift in Sources */,
 				06ED58F8194112980032FD30 /* Repo.swift in Sources */,
 				06ED58F519410F520032FD30 /* Client.swift in Sources */,
@@ -321,7 +330,10 @@
 				CF949D12193F5F6D004EB8A1 /* IssueTests.swift in Sources */,
 				062A7A7A1943795400E5FCCE /* Parser.swift in Sources */,
 				CF949D1D193F616A004EB8A1 /* BaseModelTests.swift in Sources */,
+				062A7A8219439AAD00E5FCCE /* IssueParser.swift in Sources */,
+				062A7A7E194390D500E5FCCE /* IssueParserTests.swift in Sources */,
 				06ED58F21940F2510032FD30 /* Model.swift in Sources */,
+				062A7A8319439BB200E5FCCE /* Issue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
