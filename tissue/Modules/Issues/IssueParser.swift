@@ -33,17 +33,12 @@ class IssueParser: Parser {
     }
 
     class func parseIssue(json: NSDictionary) -> Issue? {
-        var title: String
         var body: String?
         var id: String
         var url: NSURL
         var issue: Issue
 
-        if let titleResponse: AnyObject = json[IssueAPIKey.title] {
-            title = titleResponse as String
-        } else {
-            return nil
-        }
+        let title = IssueParser.parseTitle(fromResponse: json)
 
         if let bodyResponse: AnyObject = json[IssueAPIKey.body] {
             body = bodyResponse as? String
@@ -70,6 +65,26 @@ class IssueParser: Parser {
         }
 
         return issue
+    }
+
+    class func parse<T>(json: NSDictionary, key: String) -> T {
+        var value: T
+
+        if let response: T = json[key] {
+            value = response
+        }
+
+        return value
+    }
+
+    class func parseTitle(fromResponse json: NSDictionary) -> String? {
+        var title: String?
+
+        if let titleResponse: AnyObject = json[IssueAPIKey.title] {
+            title = titleResponse as? String
+        }
+
+        return title
     }
 
 }
