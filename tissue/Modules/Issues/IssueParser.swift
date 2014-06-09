@@ -33,58 +33,21 @@ class IssueParser: Parser {
     }
 
     class func parseIssue(json: NSDictionary) -> Issue? {
-        var body: String?
-        var id: String
-        var url: NSURL
-        var issue: Issue
 
-        let title = IssueParser.parseTitle(fromResponse: json)
+        var issue: Issue?
 
-        if let bodyResponse: AnyObject = json[IssueAPIKey.body] {
-            body = bodyResponse as? String
-        }
+        let title   = parseString(json, key: IssueAPIKey.title)
+        let id      = parseNumber(json, key: IssueAPIKey.id)
+        let url     = parseURL(json, key: IssueAPIKey.url)
+        let body    = parseString(json, key: IssueAPIKey.body)
 
-        if let idResponse: AnyObject = json[IssueAPIKey.id] {
-            let idNumber = idResponse as NSNumber
-            id = idNumber.stringValue
-        } else {
-            return nil
-        }
-
-        if let urlResponse: AnyObject = json[IssueAPIKey.url] {
-            let urlString = urlResponse as  String
-            url = NSURL(string: urlString)
-        } else {
-            return nil
-        }
-
-        if body {
-            issue = Issue(id: id, title: title, body: body!, url: url)
-        } else {
-            issue = Issue(id: id, title: title, url: url)
+        if title? && id? && url? {
+            issue = Issue(id: id!.stringValue, title: title!, body: body, url: url!)
         }
 
         return issue
     }
 
-    class func parse<T>(json: NSDictionary, key: String) -> T {
-        var value: T
-
-        if let response: T = json[key] {
-            value = response
-        }
-
-        return value
-    }
-
-    class func parseTitle(fromResponse json: NSDictionary) -> String? {
-        var title: String?
-
-        if let titleResponse: AnyObject = json[IssueAPIKey.title] {
-            title = titleResponse as? String
-        }
-
-        return title
-    }
+    
 
 }

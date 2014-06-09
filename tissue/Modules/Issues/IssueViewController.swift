@@ -45,7 +45,7 @@ class IssueViewController: UITableViewController {
                 self.issues = issues
                 self.tableView.reloadData()
             } else {
-                UIAlertView(title: "Error", message: "Error loading issues", delegate: nil, cancelButtonTitle: "Ok").show()
+                println("Parsing error")
             }
         })
     }

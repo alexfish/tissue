@@ -32,4 +32,33 @@ class Parser: NSObject {
         }
     }
 
+    class func parseString(json: NSDictionary, key: String) -> String? {
+        var value: String?
+
+        if let response: AnyObject = json[key] {
+            value = response as? String
+        }
+
+        return value
+    }
+
+    class func parseNumber(json: NSDictionary, key: String) -> NSNumber? {
+        var value: NSNumber?
+
+        if let response: AnyObject = json[key] {
+            value = response as? NSNumber
+        }
+
+        return value
+    }
+
+    class func parseURL(json: NSDictionary, key: String) -> NSURL? {
+        var value: NSURL?
+
+        if let response: String = parseString(json, key: key) {
+            value = NSURL(string: response)
+        }
+
+        return value
+    }
 }

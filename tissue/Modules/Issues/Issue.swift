@@ -37,7 +37,7 @@ class Issue: Model {
         super.init(id: id)
     }
 
-    convenience init(id: String, title: String, body: String, url: NSURL) {
+    convenience init(id: String, title: String, body: String?, url: NSURL) {
         self.init(id: id, state: State.open, title: title, body: body, url: url)
     }
 

@@ -39,4 +39,25 @@ class ParserTests: XCTestCase {
 
         XCTAssertNotNil(error, "invalid JSON was parsed")
     }
+
+    func testStringsAreParsed() {
+        let dictionary = ["Hello": "World"]
+        let string = Parser.parseString(dictionary, key: "Hello")
+
+        XCTAssertNotNil(string, "String was not parsed")
+    }
+
+    func testURLsAreParsed() {
+        let dictionary = ["Hello": "http://hello.com"]
+        let url = Parser.parseURL(dictionary, key: "Hello")
+
+        XCTAssertNotNil(url, "URL was not parsed")
+    }
+
+    func testNumbersAreParsed() {
+        let dictionary = ["Hello": NSNumber(int: 1)]
+        let number = Parser.parseNumber(dictionary, key: "Hello")
+
+        XCTAssertNotNil(number, "Number was not parsed")
+    }
 }
