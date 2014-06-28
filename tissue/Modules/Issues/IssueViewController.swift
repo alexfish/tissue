@@ -40,13 +40,9 @@ class IssueViewController: UITableViewController {
     func getIssues() {
         let client: Client = Client()
 
-        client.getIssues(repo, { issues, error in
-            if issues {
-                self.issues = issues
-                self.tableView.reloadData()
-            } else {
-                println("Parsing error")
-            }
+        client.issues(repo, { issues in
+            self.issues = issues
+            self.tableView.reloadData()
         })
     }
 

@@ -66,31 +66,16 @@ class Client: NSObject {
 
 extension Client {
 
-    func getIssues(repo: Repo, completionHandler: (issues: Issue[]!, error: NSError!) -> Void) {
+    func issues(repo: Repo, completionHandler: (issues: Issue[]!) -> Void) {
 
-        let parserError = NSError(domain: ParserError.domain, code: ParserError.code, userInfo: ParserError.userInfo)
-        let issuesPath = "repos/\(repo.id)/issues"
-        let url = NSURL(string: issuesPath, relativeToURL: ClientURL.GitHub)
+        let url = NSURL(string: repo.issuesAPIPath(), relativeToURL: ClientURL.GitHub)
 
         getURL(url, { response, error in
-            if !error {
-                let json : AnyObject! = response
+            let issues = IssueParser.parseIssues(response as NSArray)
 
-                    if let issues = IssueParser.parseIssues(json as NSArray) {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            completionHandler(issues: issues, error: nil)
-                        })
-                    } else {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            completionHandler(issues: nil, error: parserError)
-                        })
-                    }
-            } else {
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(issues: nil, error: error)
-                });
-            }
+            dispatch_async(dispatch_get_main_queue(), {
+                completionHandler(issues: issues)
+            })
         })
     }
-
 }

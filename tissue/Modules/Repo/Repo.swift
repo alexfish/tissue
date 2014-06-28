@@ -9,5 +9,8 @@
 import UIKit
 
 class Repo: Model {
-    
+
+    func issuesAPIPath() -> String {
+        return "repos/\(self.id)/issues"
+    }
 }
