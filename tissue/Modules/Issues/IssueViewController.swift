@@ -24,7 +24,10 @@ class IssueViewController: UITableViewController {
 
         setupTitle()
         setupTableView()
-        getIssues()
+
+        getIssues({
+            self.tableView.reloadData()
+        })
     }
 
     // #pragme mark - Setup
@@ -37,12 +40,13 @@ class IssueViewController: UITableViewController {
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
     }
 
-    func getIssues() {
+    func getIssues(completionHandler: () -> Void) {
         let client: Client = Client()
 
         client.issues(repo, { issues in
             self.issues = issues
-            self.tableView.reloadData()
+
+            completionHandler()
         })
     }
 
