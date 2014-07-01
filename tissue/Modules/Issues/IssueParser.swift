@@ -18,12 +18,12 @@ struct IssueAPIKey {
 
 class IssueParser: Parser {
 
-    class func parseIssues(json: NSArray) -> Issue[] {
+    func parseIssues(json: NSArray) -> Issue[] {
         var issues: Issue[] = []
 
         for object: AnyObject in json {
             if let issueJSON = object as? NSDictionary {
-                if let issue = IssueParser.parseIssue(issueJSON) {
+                if let issue = self.parseIssue(issueJSON) {
                     issues.append(issue)
                 }
             }
@@ -32,7 +32,7 @@ class IssueParser: Parser {
         return issues
     }
 
-    class func parseIssue(json: NSDictionary) -> Issue? {
+    func parseIssue(json: NSDictionary) -> Issue? {
 
         var issue: Issue?
 
@@ -47,4 +47,5 @@ class IssueParser: Parser {
 
         return issue
     }
+    
 }

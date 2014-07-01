@@ -16,7 +16,19 @@ struct ParserError {
 
 class Parser: NSObject {
 
-    class func parseJSON(data: NSData) -> (response: AnyObject!, error: NSError!) {
+    class func parser(type: AnyClass) -> Parser {
+        var parser: Parser
+
+        if type is Issue.Type {
+            parser = IssueParser()
+        } else {
+            parser = Parser()
+        }
+
+        return parser
+    }
+
+    func parseJSON(data: NSData) -> (response: AnyObject!, error: NSError!) {
 
         let parserError = NSError(domain: ParserError.domain, code: ParserError.code, userInfo: ParserError.userInfo)
         var error: NSError?
@@ -31,8 +43,8 @@ class Parser: NSObject {
             return(nil, parserError)
         }
     }
-
-    class func parseString(json: NSDictionary, key: String) -> String? {
+    
+    func parseString(json: NSDictionary, key: String) -> String? {
         var value: String?
 
         if let response: AnyObject = json[key] {
@@ -42,7 +54,7 @@ class Parser: NSObject {
         return value
     }
 
-    class func parseNumber(json: NSDictionary, key: String) -> NSNumber? {
+    func parseNumber(json: NSDictionary, key: String) -> NSNumber? {
         var value: NSNumber?
 
         if let response: AnyObject = json[key] {
@@ -52,7 +64,7 @@ class Parser: NSObject {
         return value
     }
 
-    class func parseURL(json: NSDictionary, key: String) -> NSURL? {
+    func parseURL(json: NSDictionary, key: String) -> NSURL? {
         var value: NSURL?
 
         if let response: String = parseString(json, key: key) {
