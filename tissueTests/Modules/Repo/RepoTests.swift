@@ -20,10 +20,11 @@ class RepoTests: XCTestCase {
         super.tearDown()
     }
 
-    func testIssuePathIsReturned() {
+    func testIssueURLIsReturned() {
         let repo = Repo(id: "100")
-        let path: String = repo.path(Issue)
+        let url: NSURL = repo.url(Issue)
+        let expected = NSURL(string: "repos/100/issues", relativeToURL: ClientURL.GitHub)
 
-        XCTAssertEqual("repos/100/issues", path, "Issue path was not returned")
+        XCTAssertEqual(expected, url, "Issue url was not returned")
     }
 }

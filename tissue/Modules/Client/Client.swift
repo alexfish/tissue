@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 struct ClientHTTPMethod {
     static let GET  = "GET"
     static let POST = "POST"
@@ -50,6 +51,19 @@ class Client: NSObject {
         })
     }
 
+    func getObjects(repo: Repo, type: AnyClass, completionHandler: (objects: AnyObject[]!) -> Void) {
+        let parser = Parser.parser(type)
+        let url = repo.url(Issue)
+
+        getURL(url, { response, error in
+            let objects = parser.parseObjects(response as NSArray)
+
+            dispatch_async(dispatch_get_main_queue(), {
+                completionHandler(objects: objects)
+                })
+            })
+    }
+
     func urlGETRequest(url: NSURL) -> NSURLRequest {
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: url)
 
@@ -62,18 +76,5 @@ class Client: NSObject {
     func toggleActicityIndicator() {
         let application: UIApplication = UIApplication.sharedApplication()
         application.networkActivityIndicatorVisible = !application.networkActivityIndicatorVisible
-    }
-
-    func getObjects(repo: Repo, type: AnyClass, completionHandler: (objects: AnyObject[]!) -> Void) {
-        let parser = Parser.parser(type)
-        let url = NSURL(string: repo.path(type), relativeToURL: ClientURL.GitHub)
-
-        getURL(url, { response, error in
-            let objects = parser.parseObjects(response as NSArray)
-
-            dispatch_async(dispatch_get_main_queue(), {
-                completionHandler(objects: objects)
-            })
-        })
     }
 }
