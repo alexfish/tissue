@@ -43,9 +43,8 @@ class IssueViewController: UITableViewController {
     func getIssues(completionHandler: () -> Void) {
         let client: Client = Client()
 
-        client.issues(repo, { issues in
+        client.getObjects(repo, type: Issue.self, { issues in
             self.issues = issues as Issue[]
-
             completionHandler()
         })
     }

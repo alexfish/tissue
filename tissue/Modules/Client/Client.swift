@@ -64,16 +64,15 @@ class Client: NSObject {
         application.networkActivityIndicatorVisible = !application.networkActivityIndicatorVisible
     }
 
-    func issues(repo: Repo, completionHandler: (issues: Issue[]!) -> Void) {
-
-        let parser = Parser.parser(Issue)
-        let url = NSURL(string: repo.issuesAPIPath(), relativeToURL: ClientURL.GitHub)
+    func getObjects(repo: Repo, type: AnyClass, completionHandler: (objects: AnyObject[]!) -> Void) {
+        let parser = Parser.parser(type)
+        let url = NSURL(string: repo.path(type), relativeToURL: ClientURL.GitHub)
 
         getURL(url, { response, error in
-            let issues = parser.parseObjects(response as NSArray)
+            let objects = parser.parseObjects(response as NSArray)
 
             dispatch_async(dispatch_get_main_queue(), {
-                completionHandler(issues: issues as Issue[])
+                completionHandler(objects: objects)
             })
         })
     }
