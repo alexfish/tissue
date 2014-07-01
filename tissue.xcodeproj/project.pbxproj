@@ -18,6 +18,9 @@
 		06ED58F21940F2510032FD30 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF949D18193F6071004EB8A1 /* Model.swift */; };
 		06ED58F519410F520032FD30 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED58F419410F520032FD30 /* Client.swift */; };
 		06ED58F8194112980032FD30 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED58F7194112980032FD30 /* Repo.swift */; };
+		CF19E3C41963087C00E855AA /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED58F419410F520032FD30 /* Client.swift */; };
+		CF19E3C8196308D700E855AA /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED58F7194112980032FD30 /* Repo.swift */; };
+		CF19E3CB19630AEB00E855AA /* RepoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19E3CA19630AEB00E855AA /* RepoTests.swift */; };
 		CF949D09193F5C12004EB8A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF949D03193F5C12004EB8A1 /* AppDelegate.swift */; };
 		CF949D0A193F5C12004EB8A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF949D05193F5C12004EB8A1 /* Main.storyboard */; };
 		CF949D0B193F5C12004EB8A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF949D07193F5C12004EB8A1 /* Images.xcassets */; };
@@ -45,6 +48,7 @@
 		062A7A841943A3F100E5FCCE /* IssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueViewController.swift; sourceTree = "<group>"; };
 		06ED58F419410F520032FD30 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		06ED58F7194112980032FD30 /* Repo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
+		CF19E3CA19630AEB00E855AA /* RepoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoTests.swift; sourceTree = "<group>"; };
 		CF949CDF193F5BC4004EB8A1 /* tissue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tissue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF949CF1193F5BC4004EB8A1 /* tissueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tissueTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF949CF6193F5BC4004EB8A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,6 +92,14 @@
 			isa = PBXGroup;
 			children = (
 				06ED58F7194112980032FD30 /* Repo.swift */,
+			);
+			path = Repo;
+			sourceTree = "<group>";
+		};
+		CF19E3C919630AE100E855AA /* Repo */ = {
+			isa = PBXGroup;
+			children = (
+				CF19E3CA19630AEB00E855AA /* RepoTests.swift */,
 			);
 			path = Repo;
 			sourceTree = "<group>";
@@ -181,6 +193,7 @@
 			children = (
 				CF949D17193F5F95004EB8A1 /* Base */,
 				CF949D13193F5F75004EB8A1 /* Issues */,
+				CF19E3C919630AE100E855AA /* Repo */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -328,11 +341,14 @@
 			files = (
 				062A7A791943789200E5FCCE /* ParserTests.swift in Sources */,
 				CF949D12193F5F6D004EB8A1 /* IssueTests.swift in Sources */,
+				CF19E3C8196308D700E855AA /* Repo.swift in Sources */,
 				062A7A7A1943795400E5FCCE /* Parser.swift in Sources */,
 				CF949D1D193F616A004EB8A1 /* BaseModelTests.swift in Sources */,
 				062A7A8219439AAD00E5FCCE /* IssueParser.swift in Sources */,
+				CF19E3CB19630AEB00E855AA /* RepoTests.swift in Sources */,
 				062A7A7E194390D500E5FCCE /* IssueParserTests.swift in Sources */,
 				06ED58F21940F2510032FD30 /* Model.swift in Sources */,
+				CF19E3C41963087C00E855AA /* Client.swift in Sources */,
 				062A7A8319439BB200E5FCCE /* Issue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
