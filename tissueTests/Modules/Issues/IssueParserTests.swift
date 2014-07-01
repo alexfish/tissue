@@ -29,7 +29,7 @@ class IssueParserTests: XCTestCase {
     }
 
     func parsedIssue() -> Issue {
-        let issue: Issue? = parser.parseIssue(validJson)
+        let issue: Issue? = parser.parseObject(validJson) as? Issue
         return issue!
     }
 
@@ -56,38 +56,38 @@ class IssueParserTests: XCTestCase {
     }
 
     func testIssuesAreParsed() {
-        XCTAssertNotNil(parser.parseIssues([validJson]), "Issues were not parsed")
+        XCTAssertNotNil(parser.parseObjects([validJson]), "Issues were not parsed")
     }
 
     func testMissingBodyIsParsed() {
         var dictionary = NSMutableDictionary(dictionary: validJson)
         dictionary.removeObjectForKey(IssueAPIKey.body)
 
-        XCTAssertNotNil(parser.parseIssues([dictionary]), "Invalid json was parsed")
+        XCTAssertNotNil(parser.parseObjects([dictionary]), "Invalid json was parsed")
     }
 
     func testAnInvalidJSONStringIsNotParsed() {
-        (parser.parseIssues(["Hello"]).count == 0, "Invalid json was parsed")
+        (parser.parseObjects(["Hello"]).count == 0, "Invalid json was parsed")
     }
 
     func testMissingTitleIsNotParsed() {
         var dictionary = NSMutableDictionary(dictionary: validJson)
         dictionary.removeObjectForKey(IssueAPIKey.title)
 
-        XCTAssertTrue(parser.parseIssues([dictionary]).count == 0, "Invalid json was parsed")
+        XCTAssertTrue(parser.parseObjects([dictionary]).count == 0, "Invalid json was parsed")
     }
 
     func testMissingURLIsNotParsed() {
         var dictionary = NSMutableDictionary(dictionary: validJson)
         dictionary.removeObjectForKey(IssueAPIKey.url)
 
-        XCTAssertTrue(parser.parseIssues([dictionary]).count == 0, "Invalid json was parsed")
+        XCTAssertTrue(parser.parseObjects([dictionary]).count == 0, "Invalid json was parsed")
     }
 
     func testMissingIDIsNotParsed() {
         var dictionary = NSMutableDictionary(dictionary: validJson)
         dictionary.removeObjectForKey(IssueAPIKey.id)
 
-        XCTAssertTrue(parser.parseIssues([dictionary]).count == 0, "Invalid json was parsed")
+        XCTAssertTrue(parser.parseObjects([dictionary]).count == 0, "Invalid json was parsed")
     }
 }

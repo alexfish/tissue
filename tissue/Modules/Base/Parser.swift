@@ -73,4 +73,24 @@ class Parser: NSObject {
 
         return value
     }
+
+    func parseObjects(json: NSArray) -> AnyObject[] {
+
+        var objects: AnyObject[] = []
+
+        for object: AnyObject in json {
+            if let objectJSON = object as? NSDictionary {
+                if let object: AnyObject = parseObject(objectJSON) {
+                    objects.append(object)
+                }
+            }
+        }
+
+        return objects
+    }
+
+    func parseObject(json: NSDictionary) -> AnyObject? {
+        /** Overwritten in subclasses */
+        return nil
+    }
 }
