@@ -44,7 +44,7 @@ class IssueViewController: UITableViewController {
         let client: Client = Client()
 
         client.issues(repo, { issues in
-            self.issues = issues
+            self.issues = issues as Issue[]
 
             completionHandler()
         })

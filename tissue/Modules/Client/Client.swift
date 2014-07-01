@@ -63,20 +63,17 @@ class Client: NSObject {
         let application: UIApplication = UIApplication.sharedApplication()
         application.networkActivityIndicatorVisible = !application.networkActivityIndicatorVisible
     }
-}
-
-extension Client {
 
     func issues(repo: Repo, completionHandler: (issues: Issue[]!) -> Void) {
 
-        let parser = IssueParser()
+        let parser = Parser.parser(Issue)
         let url = NSURL(string: repo.issuesAPIPath(), relativeToURL: ClientURL.GitHub)
 
         getURL(url, { response, error in
-            let issues = IssueParser.parseIssues(response as NSArray)
+            let issues = parser.parseObjects(response as NSArray)
 
             dispatch_async(dispatch_get_main_queue(), {
-                completionHandler(issues: issues)
+                completionHandler(issues: issues as Issue[])
             })
         })
     }
