@@ -10,16 +10,16 @@ import UIKit
 
 class Repo: Model {
 
-    func path(type: AnyClass) -> String {
-        var path: String
+    func url(type: AnyClass) -> NSURL {
+        var url: NSURL
 
         if type is Issue.Type {
-            path = issuesAPIPath()
+            url = NSURL(string: issuesAPIPath(), relativeToURL: ClientURL.GitHub)
         } else {
-            path = "/repos/"
+            url = NSURL(string: "/repos")
         }
 
-        return path
+        return url
     }
 
     func issuesAPIPath() -> String {
