@@ -13,8 +13,6 @@ class IssueViewController: UITableViewController {
     var issues: Issue[] = []
     let repo = Repo(id: "CocoaPods/Core")
 
-    // #pragma mark - Init
-
     init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
     }
@@ -29,8 +27,6 @@ class IssueViewController: UITableViewController {
             self.tableView.reloadData()
         })
     }
-
-    // #pragme mark - Setup
 
     func setupTitle() {
         self.title = repo.id
@@ -48,8 +44,9 @@ class IssueViewController: UITableViewController {
             completionHandler()
         })
     }
+}
 
-    // #pragma mark - Table view data source
+extension IssueViewController : UITableViewDataSource {
 
     override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
         return 1

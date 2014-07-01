@@ -36,7 +36,7 @@ class Client: NSObject {
     func getURL(url: NSURL, completionHandler: (json: AnyObject!, error: NSError!) -> Void) {
         self.toggleActicityIndicator()
 
-        let urlRequest: NSURLRequest = self.urlGETRequest(url)
+        let urlRequest = self.urlGETRequest(url)
         let parser = Parser()
 
         NSURLConnection.sendAsynchronousRequest(urlRequest, queue: queue, completionHandler: {response, data, error in
@@ -60,8 +60,8 @@ class Client: NSObject {
 
             dispatch_async(dispatch_get_main_queue(), {
                 completionHandler(objects: objects)
-                })
             })
+        })
     }
 
     func urlGETRequest(url: NSURL) -> NSURLRequest {
