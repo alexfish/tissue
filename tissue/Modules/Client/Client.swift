@@ -42,12 +42,8 @@ class Client: NSObject {
         NSURLConnection.sendAsynchronousRequest(urlRequest, queue: queue, completionHandler: {response, data, error in
             self.toggleActicityIndicator()
 
-            if error {
-                completionHandler(json: nil, error: error)
-            } else {
-                let (response: AnyObject!, error: NSError!) = parser.parseJSON(data)
-                completionHandler(json: response, error: error)
-            }
+            let (response: AnyObject!, error: NSError!) = parser.parseJSON(data)
+            completionHandler(json: response, error: error)
         })
     }
 
