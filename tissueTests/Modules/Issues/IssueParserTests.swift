@@ -16,6 +16,8 @@ class IssueParserTests: XCTestCase {
                      IssueAPIKey.state: "open",
                      IssueAPIKey.id: 1]
 
+    let parser = IssueParser()
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -27,7 +29,7 @@ class IssueParserTests: XCTestCase {
     }
 
     func parsedIssue() -> Issue {
-        let issue: Issue? = IssueParser.parseIssue(validJson)
+        let issue: Issue? = parser.parseIssue(validJson)
         return issue!
     }
 
@@ -54,38 +56,38 @@ class IssueParserTests: XCTestCase {
     }
 
     func testIssuesAreParsed() {
-        XCTAssertNotNil(IssueParser.parseIssues([validJson]), "Issues were not parsed")
+        XCTAssertNotNil(parser.parseIssues([validJson]), "Issues were not parsed")
     }
 
     func testMissingBodyIsParsed() {
         var dictionary = NSMutableDictionary(dictionary: validJson)
         dictionary.removeObjectForKey(IssueAPIKey.body)
 
-        XCTAssertNotNil(IssueParser.parseIssues([dictionary]), "Invalid json was parsed")
+        XCTAssertNotNil(parser.parseIssues([dictionary]), "Invalid json was parsed")
     }
 
     func testAnInvalidJSONStringIsNotParsed() {
-        (IssueParser.parseIssues(["Hello"]).count == 0, "Invalid json was parsed")
+        (parser.parseIssues(["Hello"]).count == 0, "Invalid json was parsed")
     }
 
     func testMissingTitleIsNotParsed() {
         var dictionary = NSMutableDictionary(dictionary: validJson)
         dictionary.removeObjectForKey(IssueAPIKey.title)
 
-        XCTAssertTrue(IssueParser.parseIssues([dictionary]).count == 0, "Invalid json was parsed")
+        XCTAssertTrue(parser.parseIssues([dictionary]).count == 0, "Invalid json was parsed")
     }
 
     func testMissingURLIsNotParsed() {
         var dictionary = NSMutableDictionary(dictionary: validJson)
         dictionary.removeObjectForKey(IssueAPIKey.url)
 
-        XCTAssertTrue(IssueParser.parseIssues([dictionary]).count == 0, "Invalid json was parsed")
+        XCTAssertTrue(parser.parseIssues([dictionary]).count == 0, "Invalid json was parsed")
     }
 
     func testMissingIDIsNotParsed() {
         var dictionary = NSMutableDictionary(dictionary: validJson)
         dictionary.removeObjectForKey(IssueAPIKey.id)
 
-        XCTAssertTrue(IssueParser.parseIssues([dictionary]).count == 0, "Invalid json was parsed")
+        XCTAssertTrue(parser.parseIssues([dictionary]).count == 0, "Invalid json was parsed")
     }
 }

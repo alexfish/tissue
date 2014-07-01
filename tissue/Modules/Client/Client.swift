@@ -36,6 +36,7 @@ class Client: NSObject {
         self.toggleActicityIndicator()
 
         let urlRequest: NSURLRequest = self.urlGETRequest(url)
+        let parser = Parser()
 
         NSURLConnection.sendAsynchronousRequest(urlRequest, queue: queue, completionHandler: {response, data, error in
             self.toggleActicityIndicator()
@@ -43,7 +44,7 @@ class Client: NSObject {
             if error {
                 completionHandler(json: nil, error: error)
             } else {
-                let (response: AnyObject!, error: NSError!) = Parser.parseJSON(data)
+                let (response: AnyObject!, error: NSError!) = parser.parseJSON(data)
                 completionHandler(json: response, error: error)
             }
         })
@@ -68,6 +69,7 @@ extension Client {
 
     func issues(repo: Repo, completionHandler: (issues: Issue[]!) -> Void) {
 
+        let parser = IssueParser()
         let url = NSURL(string: repo.issuesAPIPath(), relativeToURL: ClientURL.GitHub)
 
         getURL(url, { response, error in
