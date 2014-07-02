@@ -68,4 +68,10 @@ class ParserTests: XCTestCase {
 
         XCTAssertTrue(parser is IssueParser, "An issue parser was not returned")
     }
+
+    func testRepoParserIsReturned() {
+        let parser = Parser.parser(Repo)
+
+        XCTAssertTrue(parser is RepoParser, "A preo parser was not returned")
+    }
 }

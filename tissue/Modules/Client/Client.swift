@@ -23,10 +23,24 @@ class Client: NSObject {
 
     let queue = NSOperationQueue()
     var timeoutInterval: NSTimeInterval
+    let repo: Repo
 
     init(timeout: NSTimeInterval) {
         self.timeoutInterval = timeout
+        self.repo = Repo()
+
         super.init()
+    }
+
+    init(repo: Repo, timeout: NSTimeInterval) {
+        self.timeoutInterval = timeout
+        self.repo = repo
+
+        super.init()
+    }
+
+    convenience init(repo: Repo) {
+        self.init(repo: repo, timeout: 30)
     }
 
     convenience init() {
@@ -47,11 +61,10 @@ class Client: NSObject {
         })
     }
 
-    func getObjects(repo: Repo, type: AnyClass, completionHandler: (objects: AnyObject[]!) -> Void) {
+    func getObjects(type: AnyClass, completionHandler: (objects: AnyObject[]!) -> Void) {
         let parser = Parser.parser(type)
-        let url = repo.url(Issue)
 
-        getURL(url, { response, error in
+        getURL(self.repo.url(type), { response, error in
             let objects = parser.parseObjects(response as NSArray)
 
             dispatch_async(dispatch_get_main_queue(), {

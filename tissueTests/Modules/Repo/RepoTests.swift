@@ -21,10 +21,19 @@ class RepoTests: XCTestCase {
     }
 
     func testIssueURLIsReturned() {
-        let repo = Repo(id: "100")
+        let repo = Repo(id: "100", title: "title")
         let url: NSURL = repo.url(Issue)
-        let expected = NSURL(string: "repos/100/issues", relativeToURL: ClientURL.GitHub)
+        let expected = NSURL(string: repo.issuesAPIPath(), relativeToURL: ClientURL.GitHub)
 
         XCTAssertEqual(expected, url, "Issue url was not returned")
+    }
+
+    func testDefaultURLIsReturned() {
+        let repo = Repo()
+        let url: NSURL = repo.url(Repo)
+
+        let expected = NSURL(string: repo.defaultAPIPath(), relativeToURL: ClientURL.GitHub)
+
+        XCTAssertEqual(expected, url, "Default URL was not returned")
     }
 }
