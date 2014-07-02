@@ -11,7 +11,12 @@ import UIKit
 class IssueViewController: UITableViewController {
 
     var issues: Issue[] = []
-    let repo = Repo(id: "CocoaPods/Core", title: "Hello")
+    var repo: Repo
+
+    init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+        self.repo = Repo()
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
 
     init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)

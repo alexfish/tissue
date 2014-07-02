@@ -35,10 +35,14 @@ class Repo: Model {
     }
 
     func issuesAPIPath() -> String {
-        return "repos/\(self.id)/issues"
+        return "repos/\(self.title)/issues"
     }
 
     func defaultAPIPath() -> String {
         return "repositories"
+    }
+
+    func description() -> String {
+        return "Repo is title: \(title), id: \(id)"
     }
 }

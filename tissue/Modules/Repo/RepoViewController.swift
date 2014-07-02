@@ -66,3 +66,14 @@ extension RepoViewController : UITableViewDataSource {
         return cell
     }
 }
+
+extension RepoViewController : UITableViewDelegate {
+
+    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        let repo = self.repos[indexPath.row]
+        let issueViewController = IssueViewController(nibName: nil, bundle: nil)
+        issueViewController.repo = repo
+
+        self.navigationController.pushViewController(issueViewController, animated: true)
+    }
+}
