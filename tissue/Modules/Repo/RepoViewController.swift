@@ -8,39 +8,18 @@
 
 import UIKit
 
-class RepoViewController: UITableViewController {
+class RepoViewController: TableViewController {
 
-    var repos: Repo[] = []
-
-    init(coder aDecoder: NSCoder!) {
-        super.init(coder: aDecoder)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setupTitle()
-        setupTableView()
-
-        getRepos({
-            self.tableView.reloadData()
-        })
-    }
-
-    func setupTitle() {
+    override func setupTitle() {
         self.title = "Repositories"
     }
-
-    func setupTableView() {
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
-    }
-
-    func getRepos(compleitionHandler: () -> Void) {
+    
+    override func getData(completionHandler: () -> Void) {
         let client: Client = Client()
 
         client.getObjects(Repo.self, { objects in
-            self.repos = objects as Repo[]
-            compleitionHandler()
+            self.data = objects as Repo[]
+            completionHandler()
         })
     }
 }
@@ -52,14 +31,14 @@ extension RepoViewController : UITableViewDataSource {
     }
 
     override func tableView(tableView: UITableView?, numberOfRowsInSection section: Int) -> Int {
-        return self.repos.count
+        return self.data.count
     }
 
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath?) -> UITableViewCell? {
         let cell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
 
-        if indexPath!.row < self.repos.count  {
-            let repo: Repo = self.repos[indexPath!.row]
+        if indexPath!.row < self.data.count  {
+            let repo: Repo = self.data[indexPath!.row] as Repo
             cell.text = repo.title
         }
 
@@ -70,7 +49,7 @@ extension RepoViewController : UITableViewDataSource {
 extension RepoViewController : UITableViewDelegate {
 
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        let repo = self.repos[indexPath.row]
+        let repo = self.data[indexPath.row] as Repo
         let issueViewController = IssueViewController(nibName: nil, bundle: nil)
         issueViewController.repo = repo
 
