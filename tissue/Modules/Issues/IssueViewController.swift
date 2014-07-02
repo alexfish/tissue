@@ -11,7 +11,7 @@ import UIKit
 class IssueViewController: TableViewController {
 
     override func setupTitle() {
-        self.title = repo.id
+        self.title = repo.title
     }
 
     override func getData(completionHandler: () -> Void) {
