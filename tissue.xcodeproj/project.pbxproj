@@ -21,6 +21,9 @@
 		CF19E3C41963087C00E855AA /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED58F419410F520032FD30 /* Client.swift */; };
 		CF19E3C8196308D700E855AA /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED58F7194112980032FD30 /* Repo.swift */; };
 		CF19E3CB19630AEB00E855AA /* RepoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19E3CA19630AEB00E855AA /* RepoTests.swift */; };
+		CF40C3FE19643BD50060ECC7 /* RepoParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF40C3FD19643BD50060ECC7 /* RepoParser.swift */; };
+		CF40C40019643CAF0060ECC7 /* RepoParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF40C3FF19643CAF0060ECC7 /* RepoParserTests.swift */; };
+		CF40C40119643CB40060ECC7 /* RepoParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF40C3FD19643BD50060ECC7 /* RepoParser.swift */; };
 		CF949D09193F5C12004EB8A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF949D03193F5C12004EB8A1 /* AppDelegate.swift */; };
 		CF949D0A193F5C12004EB8A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF949D05193F5C12004EB8A1 /* Main.storyboard */; };
 		CF949D0B193F5C12004EB8A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF949D07193F5C12004EB8A1 /* Images.xcassets */; };
@@ -28,7 +31,7 @@
 		CF949D19193F6071004EB8A1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF949D18193F6071004EB8A1 /* Model.swift */; };
 		CF949D1B193F6158004EB8A1 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF949D1A193F6158004EB8A1 /* Issue.swift */; };
 		CF949D1D193F616A004EB8A1 /* BaseModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF949D1C193F616A004EB8A1 /* BaseModelTests.swift */; };
-		CFA18C7C19632BDA003C7AE0 /* RepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA18C7B19632BDA003C7AE0 /* RepoViewController.swift */; };
+		CFA18C8019640BEC003C7AE0 /* RepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA18C7F19640BEC003C7AE0 /* RepoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,8 @@
 		06ED58F419410F520032FD30 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		06ED58F7194112980032FD30 /* Repo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		CF19E3CA19630AEB00E855AA /* RepoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoTests.swift; sourceTree = "<group>"; };
+		CF40C3FD19643BD50060ECC7 /* RepoParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoParser.swift; sourceTree = "<group>"; };
+		CF40C3FF19643CAF0060ECC7 /* RepoParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoParserTests.swift; sourceTree = "<group>"; };
 		CF949CDF193F5BC4004EB8A1 /* tissue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tissue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF949CF1193F5BC4004EB8A1 /* tissueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tissueTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF949CF6193F5BC4004EB8A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,7 +66,7 @@
 		CF949D18193F6071004EB8A1 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = Base/Model.swift; sourceTree = "<group>"; };
 		CF949D1A193F6158004EB8A1 /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		CF949D1C193F616A004EB8A1 /* BaseModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseModelTests.swift; path = Base/BaseModelTests.swift; sourceTree = "<group>"; };
-		CFA18C7B19632BDA003C7AE0 /* RepoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoViewController.swift; sourceTree = "<group>"; };
+		CFA18C7F19640BEC003C7AE0 /* RepoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				06ED58F7194112980032FD30 /* Repo.swift */,
-				CFA18C7B19632BDA003C7AE0 /* RepoViewController.swift */,
+				CFA18C7F19640BEC003C7AE0 /* RepoViewController.swift */,
+				CF40C3FD19643BD50060ECC7 /* RepoParser.swift */,
 			);
 			path = Repo;
 			sourceTree = "<group>";
@@ -103,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				CF19E3CA19630AEB00E855AA /* RepoTests.swift */,
+				CF40C3FF19643CAF0060ECC7 /* RepoParserTests.swift */,
 			);
 			path = Repo;
 			sourceTree = "<group>";
@@ -329,8 +336,9 @@
 			files = (
 				CF949D09193F5C12004EB8A1 /* AppDelegate.swift in Sources */,
 				062A7A811943918900E5FCCE /* IssueParser.swift in Sources */,
-				CFA18C7C19632BDA003C7AE0 /* RepoViewController.swift in Sources */,
+				CFA18C8019640BEC003C7AE0 /* RepoViewController.swift in Sources */,
 				CF949D19193F6071004EB8A1 /* Model.swift in Sources */,
+				CF40C3FE19643BD50060ECC7 /* RepoParser.swift in Sources */,
 				06ED58F8194112980032FD30 /* Repo.swift in Sources */,
 				062A7A851943A3F100E5FCCE /* IssueViewController.swift in Sources */,
 				06ED58F519410F520032FD30 /* Client.swift in Sources */,
@@ -349,10 +357,12 @@
 				062A7A7A1943795400E5FCCE /* Parser.swift in Sources */,
 				CF949D1D193F616A004EB8A1 /* BaseModelTests.swift in Sources */,
 				062A7A8219439AAD00E5FCCE /* IssueParser.swift in Sources */,
+				CF40C40119643CB40060ECC7 /* RepoParser.swift in Sources */,
 				CF19E3CB19630AEB00E855AA /* RepoTests.swift in Sources */,
 				062A7A7E194390D500E5FCCE /* IssueParserTests.swift in Sources */,
 				06ED58F21940F2510032FD30 /* Model.swift in Sources */,
 				CF19E3C41963087C00E855AA /* Client.swift in Sources */,
+				CF40C40019643CAF0060ECC7 /* RepoParserTests.swift in Sources */,
 				062A7A8319439BB200E5FCCE /* Issue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

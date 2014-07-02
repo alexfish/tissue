@@ -11,7 +11,7 @@ import UIKit
 class IssueViewController: UITableViewController {
 
     var issues: Issue[] = []
-    let repo = Repo(id: "CocoaPods/Core")
+    let repo = Repo(id: "CocoaPods/Core", title: "Hello")
 
     init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
@@ -37,9 +37,9 @@ class IssueViewController: UITableViewController {
     }
 
     func getIssues(completionHandler: () -> Void) {
-        let client: Client = Client()
+        let client: Client = Client(repo: self.repo)
 
-        client.getObjects(repo, type: Issue.self, { issues in
+        client.getObjects(Issue.self, { issues in
             self.issues = issues as Issue[]
             completionHandler()
         })
