@@ -21,6 +21,8 @@ class Parser: NSObject {
 
         if type is Issue.Type {
             parser = IssueParser()
+        } else if type is Repo.Type {
+            parser = RepoParser()
         } else {
             parser = Parser()
         }

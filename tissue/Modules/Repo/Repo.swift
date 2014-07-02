@@ -10,19 +10,39 @@ import UIKit
 
 class Repo: Model {
 
+    let title: String
+
+    init(id: String, title: String) {
+        self.title = title
+
+        super.init(id: id)
+    }
+
+    convenience init() {
+        self.init(id: String(), title: String())
+    }
+
     func url(type: AnyClass) -> NSURL {
         var url: NSURL
 
         if type is Issue.Type {
             url = NSURL(string: issuesAPIPath(), relativeToURL: ClientURL.GitHub)
         } else {
-            url = NSURL(string: "/repos")
+            url = NSURL(string: defaultAPIPath(), relativeToURL: ClientURL.GitHub)
         }
 
         return url
     }
 
     func issuesAPIPath() -> String {
-        return "repos/\(self.id)/issues"
+        return "repos/\(self.title)/issues"
+    }
+
+    func defaultAPIPath() -> String {
+        return "repositories"
+    }
+
+    func description() -> String {
+        return "Repo is title: \(title), id: \(id)"
     }
 }

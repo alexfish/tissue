@@ -8,39 +8,17 @@
 
 import UIKit
 
-class IssueViewController: UITableViewController {
+class IssueViewController: TableViewController {
 
-    var issues: Issue[] = []
-    let repo = Repo(id: "CocoaPods/Core")
-
-    init(coder aDecoder: NSCoder!) {
-        super.init(coder: aDecoder)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setupTitle()
-        setupTableView()
-
-        getIssues({
-            self.tableView.reloadData()
-        })
-    }
-
-    func setupTitle() {
+    override func setupTitle() {
         self.title = repo.id
     }
 
-    func setupTableView() {
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
-    }
+    override func getData(completionHandler: () -> Void) {
+        let client: Client = Client(repo: self.repo)
 
-    func getIssues(completionHandler: () -> Void) {
-        let client: Client = Client()
-
-        client.getObjects(repo, type: Issue.self, { issues in
-            self.issues = issues as Issue[]
+        client.getObjects(Issue.self, { issues in
+            self.data = issues
             completionHandler()
         })
     }
@@ -53,14 +31,14 @@ extension IssueViewController : UITableViewDataSource {
     }
 
     override func tableView(tableView: UITableView?, numberOfRowsInSection section: Int) -> Int {
-        return self.issues.count
+        return self.data.count
     }
 
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath?) -> UITableViewCell? {
         let cell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
 
-        if indexPath!.row < self.issues.count  {
-            let issue: Issue = self.issues[indexPath!.row]
+        if indexPath!.row < self.data.count  {
+            let issue: Issue = self.data[indexPath!.row] as Issue
             cell.text = "#\(issue.id) - \(issue.title)"
         }
 
