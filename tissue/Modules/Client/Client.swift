@@ -65,11 +65,14 @@ class Client: NSObject {
         let parser = Parser.parser(type)
 
         getURL(self.repo.url(type), { response, error in
-            let objects = parser.parseObjects(response as AnyObject[])
 
-            dispatch_async(dispatch_get_main_queue(), {
-                completionHandler(objects: objects)
-            })
+            if let responseObject = response as? AnyObject[] {
+                let objects = parser.parseObjects(responseObject)
+
+                dispatch_async(dispatch_get_main_queue(), {
+                    completionHandler(objects: objects)
+                })
+            }
         })
     }
 
