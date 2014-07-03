@@ -67,7 +67,8 @@ class IssueParserTests: XCTestCase {
     }
 
     func testAnInvalidJSONStringIsNotParsed() {
-        (parser.parseObjects(["Hello"]).count == 0, "Invalid json was parsed")
+        let dictionary = ["Hello": "World"]
+        (parser.parseObjects([dictionary]).count == 0, "Invalid json was parsed")
     }
 
     func testMissingTitleIsNotParsed() {

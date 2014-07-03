@@ -76,21 +76,13 @@ class Parser: NSObject {
         return value
     }
 
-    func parseObjects(json: AnyObject) -> AnyObject[] {
+    func parseObjects(json: AnyObject[]) -> AnyObject[] {
 
-        var objects: AnyObject[] = []
-
-        if let jsonArray = json as? NSArray {
-            for object: AnyObject in jsonArray {
-                if let objectJSON = object as? NSDictionary {
-                    if let object: AnyObject = parseObject(objectJSON) {
-                        objects.append(object)
-                    }
-                }
-            }
-        } else {
-            println("Error!!!")
-        }
+        var objects = json.filter{(var object) -> Bool in
+            return self.parseObject(object as NSDictionary) != nil
+        }.map({(var object) -> AnyObject in
+            return self.parseObject(object as NSDictionary)!
+        })
 
         return objects
     }

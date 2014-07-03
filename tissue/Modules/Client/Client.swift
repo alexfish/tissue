@@ -65,7 +65,7 @@ class Client: NSObject {
         let parser = Parser.parser(type)
 
         getURL(self.repo.url(type), { response, error in
-            let objects = parser.parseObjects(response)
+            let objects = parser.parseObjects(response as AnyObject[])
 
             dispatch_async(dispatch_get_main_queue(), {
                 completionHandler(objects: objects)
