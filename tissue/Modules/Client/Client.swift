@@ -43,7 +43,7 @@ class Client: NSObject {
         self.init(repo: repo, timeout: 30)
     }
 
-    convenience init() {
+    convenience override init() {
         self.init(timeout: 30)
     }
 
@@ -61,7 +61,7 @@ class Client: NSObject {
         })
     }
 
-    func getObjects(type: AnyClass, completionHandler: (objects: AnyObject[]!) -> Void) {
+    func getObjects(type: AnyClass, completionHandler: (objects: [AnyObject]!) -> Void) {
         let parser = Parser.parser(type)
 
         getURL(self.repo.url(type), { response, error in

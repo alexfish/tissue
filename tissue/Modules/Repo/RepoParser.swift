@@ -21,7 +21,7 @@ class RepoParser: Parser {
         let title   = parseString(json, key: RepoAPIKey.title)
         let id      = parseNumber(json, key: RepoAPIKey.id)
 
-        if title? && id? {
+        if title != nil && id != nil {
             repo = Repo(id: id!.stringValue, title: title!)
         }
 

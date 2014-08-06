@@ -20,13 +20,13 @@ class IssueParser: Parser {
 
     override func parseObject(json: NSDictionary) -> AnyObject? {
         var issue: Issue?
-
+    
         let title   = parseString(json, key: IssueAPIKey.title)
         let id      = parseNumber(json, key: IssueAPIKey.id)
         let url     = parseURL(json, key: IssueAPIKey.url)
         let body    = parseString(json, key: IssueAPIKey.body)
 
-        if title? && id? && url? {
+        if title != nil && id != nil && url != nil {
             issue = Issue(id: id!.stringValue, title: title!, body: body, url: url!)
         }
 
