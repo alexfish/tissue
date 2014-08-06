@@ -39,7 +39,7 @@ extension IssueViewController : UITableViewDataSource {
 
         if indexPath!.row < self.data.count  {
             let issue: Issue = self.data[indexPath!.row] as Issue
-            cell.text = "#\(issue.id) - \(issue.title)"
+            cell.textLabel.text = "#\(issue.id) - \(issue.title)"
         }
 
         return cell

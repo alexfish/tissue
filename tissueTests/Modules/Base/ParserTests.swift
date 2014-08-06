@@ -24,14 +24,14 @@ class ParserTests: XCTestCase {
 
     func testJSONIsParsed() {
         let data = "{\"Hello\":\"world\"}".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-        let (response : AnyObject!, error) = parser.parseJSON(data)
+        let (response : AnyObject!, error) = parser.parseJSON(data!)
 
         XCTAssertNotNil(response, "JSON was not parsed")
     }
 
     func testInvalidJSONIsNotParsed() {
         let data = "asddsa".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-        let (response : AnyObject!, error) = parser.parseJSON(data)
+        let (response : AnyObject!, error) = parser.parseJSON(data!)
 
         XCTAssertNotNil(error, "invalid JSON was parsed")
     }

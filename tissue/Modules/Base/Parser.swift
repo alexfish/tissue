@@ -36,7 +36,7 @@ class Parser: NSObject {
         var error: NSError?
 
         if let json : AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &error) {
-            if !error {
+            if error == nil {
                 return(json, nil)
             } else {
                 return(nil, parserError)
@@ -76,9 +76,9 @@ class Parser: NSObject {
         return value
     }
 
-    func parseObjects(json: NSArray) -> AnyObject[] {
+    func parseObjects(json: NSArray) -> [AnyObject] {
 
-        var objects: AnyObject[] = []
+        var objects: [AnyObject] = []
 
         for object: AnyObject in json {
             if let objectJSON = object as? NSDictionary {

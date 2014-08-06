@@ -18,7 +18,7 @@ class RepoViewController: TableViewController {
         let client: Client = Client()
 
         client.getObjects(Repo.self, { objects in
-            self.data = objects as Repo[]
+            self.data = objects as [Repo]
             completionHandler()
         })
     }
@@ -39,7 +39,7 @@ extension RepoViewController : UITableViewDataSource {
 
         if indexPath!.row < self.data.count  {
             let repo: Repo = self.data[indexPath!.row] as Repo
-            cell.text = repo.title
+            cell.textLabel.text = repo.title
         }
 
         return cell

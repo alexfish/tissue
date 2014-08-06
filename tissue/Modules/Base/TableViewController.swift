@@ -11,14 +11,14 @@ import UIKit
 class TableViewController: UITableViewController {
 
     var repo: Repo
-    var data: AnyObject[] = []
+    var data: [AnyObject] = []
 
-    init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         self.repo = Repo()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
-    init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder!) {
         self.repo = Repo()
         super.init(coder: aDecoder)
     }
